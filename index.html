@@ -624,7 +624,11 @@
                                                                                                                                 align="justify">
                                                                                                                                 <span
                                                                                                                                     style="font-weight: 400; font-family: verdana, geneva; font-size: 13px; color: #878787;"><span
-                                                                                                                                        style="font-weight: 400;"><span><span>並列出「5項核心原則」。競選期間，他強調改革政府和華爾街。多位評論員指出，麥科特爾欠缺知名度，因此獲得提名的希望渺茫。即便是到了2012年美國總統共和黨初選全國民意調查時，他的支持率仍然不足1%。由於在埃姆斯民意調查中排名墊底、並且也沒有收到任何總統辯論邀請，麥科特爾於2011年9月22日放棄競爭，表示支持米特·羅姆尼。他有意競選連任，但卻陷身選票欺詐案，最終於2012年7月從國會辭職，有4名助手被法院定罪。為了走出競選失敗的陰影，麥科特爾在車庫中寫出一部電視試播劇本，但尚未完成就被泄露給媒體，給他的名聲造成進一步損害。</span></span>
+                                                                                                                                        style="font-weight: 400;"><span><span>
+                                                                                                                                                <div
+                                                                                                                                                    id="CaptionSelector">
+                                                                                                                                                </div>
+                                                                                                                                            </span></span>
                                                                                                                                     </span>
                                                                                                                                 </span>
                                                                                                                             </p>
@@ -735,25 +739,21 @@
     <div id="_hs"></div>
     <script src="http://code.jquery.com/jquery.min.js"></script>
     <script>
+        var content;
+        $.getJSON("https://yyeh26.github.io/SLP_Demo.github.io/content.json")
+            .done(function (data) {
+                content = data;
+                console.log(content);
+                var randomIndex = Math.floor(Math.random() * content["urls"].length);
+                var randomSelectedUrl = content["urls"][randomIndex];
+                var randomSelectedCaptions = content['captions'][randomIndex];
+                console.log(randomSelectedUrl);
+                console.log(randomSelectedCaptions);
+                $("#VideoSelector").html(
+                    "<iframe class='random-iframe' src='" + randomSelectedUrl + "' width='90%' height='315' frameborder='0' scrolling='yes' seamless='seamless'></iframe>");
+                $("#CaptionSelector").html(randomSelectedCaptions);
+            });
 
-        var request = new XMLHttpRequest();
-        request.open("GET", "data.json", false);
-        request.send(null);
-        request.onreadystatechange = function () {
-            if (request.readyState === 4 && request.status === 200) {
-                var my_JSON_object = JSON.parse(request.responseText);
-                console.log(my_JSON_object);
-            }
-        }
-        var content = JSON.parse(JSON.stringify("data.json"));
-        console.log(content);
-        var randomIndex = Math.floor(Math.random() * content["urls"].length);
-        var randomSelectedUrl = content["urls"][randomIndex];
-        var randomSelectedCaptions = content['captions'][randomIndex];
-        console.log(randomSelectedUrl);
-        console.log(randomSelectedCaptions);
-        $("#VideoSelector").html(
-            "<iframe class='random-iframe' src='" + randomSelectedUrl + "' width='90%' height='315' frameborder='0' scrolling='yes' seamless='seamless'></iframe>");
     </script>
 </body>
 
