@@ -10,10 +10,10 @@
 	<title>這裡可以加上課程標題之類的</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="assets/css/main.css" />
-	<link rel="dummy" href="assets/css/font.css" />s
+	<link rel="stylesheet" href="https://yyeh26.github.io/SLP_Demo.github.io/assets/css/main.css" />
+	<link rel="dummy" href="https://yyeh26.github.io/SLP_Demo.github.io/assets/css/font.css" />s
 	<noscript>
-		<link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<link rel="stylesheet" href="https://yyeh26.github.io/SLP_Demo.github.io/assets/css/noscript.css" /></noscript>
 
 </head>
 
@@ -106,15 +106,15 @@
 	</div>
 
 	<!-- Scripts -->
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/browser.min.js"></script>
-	<script src="assets/js/breakpoints.min.js"></script>
-	<script src="assets/js/util.js"></script>
-	<script src="assets/js/main.js"></script>
+	<script src="https://yyeh26.github.io/SLP_Demo.github.io/assets/js/jquery.min.js"></script>
+	<script src="https://yyeh26.github.io/SLP_Demo.github.io/assets/js/browser.min.js"></script>
+	<script src="https://yyeh26.github.io/SLP_Demo.github.io/assets/js/breakpoints.min.js"></script>
+	<script src="https://yyeh26.github.io/SLP_Demo.github.io/assets/js/util.js"></script>
+	<script src="https://yyeh26.github.io/SLP_Demo.github.io/assets/js/main.js"></script>
 
 	<script>
 		var content;
-		$.getJSON("content.json")
+		$.getJSON("https://yyeh26.github.io/SLP_Demo.github.io/content.json")
 			.done(function (data) {
 				var context_id = eval(location.href.substring(location.href.indexOf("?") + 1));
 				console.log(context_id);
@@ -123,10 +123,12 @@
 				var randomIndex = Math.floor(Math.random() * content[context_id]["urls"].length);
 				var randomSelectedUrl = content[context_id]["urls"][randomIndex];
 				var randomSelectedCaptions = content[context_id]['captions'][randomIndex];
-				console.log(randomSelectedUrl);
+				console.log("d:");
+				console.log(d);
+				console.log("randomSelectedCaptions:")
 				console.log(randomSelectedCaptions);
 				$("#VideoSelector").html(
-					"<iframe class='random-iframe' src='" + randomSelectedUrl + "' width='480px' height='300px' frameborder='0' scrolling='yes' seamless='seamless'></iframe>");
+					"<iframe class='random-iframe' src='" + d + "' width='480px' height='300px' frameborder='0' scrolling='yes' seamless='seamless'></iframe>");
 				$("#CaptionSelector").html("<fieldset class='dummy' lang='zh-tw'>" + randomSelectedCaptions + "</fieldset>");
 			});
 
