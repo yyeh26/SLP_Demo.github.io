@@ -116,10 +116,11 @@
 		var content;
 		$.getJSON("https://yyeh26.github.io/SLP_Demo.github.io/content.json")
 			.done(function (data) {
-				var context_id = eval(location.href.substring(location.href.indexOf("?") + 1));
 				console.log(context_id);
+				var context_id = eval(location.href.substring(location.href.indexOf("?") + 1));
+
 				content = data;
-				console.log(content);
+				console.log(data);
 				var randomIndex = Math.floor(Math.random() * content[context_id]["urls"].length);
 				var randomSelectedUrl = content[context_id]["urls"][randomIndex];
 				var randomSelectedCaptions = content[context_id]['captions'][randomIndex];
