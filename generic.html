@@ -7,13 +7,14 @@
 <html>
 
 <head>
-	<title>愛的36計</title>
-	<meta charset="utfss-8" />
+	<title>這裡可以加上課程標題之類的</title>
+	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="assets/css/main.css" />
-
+	<link rel="dummy" href="assets/css/font.css" />s
 	<noscript>
 		<link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+
 </head>
 
 <body class="is-preload">
@@ -57,79 +58,21 @@
 		<!-- Main -->
 		<div id="main">
 			<div class="inner">
-				<header>
-					<h1 align="">愛的36計<br /></h1>
-					<p align="">構音圖卡分類</p>
-				</header>
-
-				<section class="tiles">
-					<article class="style1">
-						<span class="image">
-							<img src="images/pic01.jpg" alt="" />
-						</span>
-						<a href="generic.html?context_id=0">
-							<h2>舌前音</h2>
-							<div class="content">
-								<p>舌前音:ㄉㄊㄗㄘㄙ舌頭往前移動</p>
-							</div>
-						</a>
-					</article>
-					<article class="style2">
-						<span class="image">
-							<img src="images/pic02.jpg" alt="" />
-						</span>
-						<a href="generic.html?context_id=1">
-							<h2>舌根音</h2>
-							<div class="content">
-								<p>舌根音:ㄍㄎㄏ喉嚨用力</p>
-							</div>
-						</a>
-					</article>
-					<article class="style3">
-						<span class="image">
-							<img src="images/pic03.jpg" alt="" />
-						</span>
-						<a href="generic.html?context_id=2">
-							<h2>送氣音</h2>
-							<div class="content">
-								<p>送氣音:ㄆㄊㄎㄘㄔㄑ電風扇打開</p>
-							</div>
-						</a>
-					</article>
-					<article class="style4">
-						<span class="image">
-							<img src="images/pic04.jpg" alt="" />
-						</span>
-						<a href="generic.html?context_id=3">
-							<h2>塞擦音</h2>
-							<div class="content">
-								<p>塞擦音:ㄗㄘㄓㄔㄐㄑ舌頭幫牙齒吹風</p>
-							</div>
-						</a>
-					</article>
-					<article class="style5">
-						<span class="image">
-							<img src="images/pic05.jpg" alt="" />
-						</span>
-						<a href="generic.html?context_id=4">
-							<h2>擦音</h2>
-							<div class="content">
-								<p>擦音:ㄙㄕㄒㄏㄖ牙齒涼涼的</p>
-							</div>
-						</a>
-					</article>
-					<article class="style6">
-						<span class="image">
-							<img src="images/pic06.jpg" alt="" />
-						</span>
-						<a href="generic.html?context_id=5">
-							<h2>複韻母音</p>聲隨韻母</h2>
-							<div class="content">
-								<p>複韻母音聲隨韻母:ㄞㄟㄠㄡ、ㄢㄣㄤㄥ有尾巴的聲音</p>
-							</div>
-						</a>
-					</article>
-				</section>
+				<table class="alt">
+					<tbody>
+						<tr align="center">
+							<td>
+								<div id="VideoSelector"></div>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div id="CaptionSelector"></div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<a href="index.html" class="button primary fit">回到首頁</a>
 			</div>
 		</div>
 
@@ -169,6 +112,25 @@
 	<script src="assets/js/util.js"></script>
 	<script src="assets/js/main.js"></script>
 
+	<script>
+		var content;
+		$.getJSON("content.json")
+			.done(function (data) {
+				var context_id = eval(location.href.substring(location.href.indexOf("?") + 1));
+				console.log(context_id);
+				content = data;
+				console.log(content);
+				var randomIndex = Math.floor(Math.random() * content[context_id]["urls"].length);
+				var randomSelectedUrl = content[context_id]["urls"][randomIndex];
+				var randomSelectedCaptions = content[context_id]['captions'][randomIndex];
+				console.log(randomSelectedUrl);
+				console.log(randomSelectedCaptions);
+				$("#VideoSelector").html(
+					"<iframe class='random-iframe' src='" + randomSelectedUrl + "' width='480px' height='300px' frameborder='0' scrolling='yes' seamless='seamless'></iframe>");
+				$("#CaptionSelector").html("<fieldset class='dummy' lang='zh-tw'>" + randomSelectedCaptions + "</fieldset>");
+			});
+
+	</script>
 </body>
 
 </html>
