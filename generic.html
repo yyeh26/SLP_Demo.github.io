@@ -7,7 +7,7 @@
 <html>
 
 <head>
-	<title>這裡可以加上課程標題之類的</title>
+	<title>愛的36計</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="https://yyeh26.github.io/SLP_Demo.github.io/assets/css/main.css" />
@@ -72,7 +72,7 @@
 						</tr>
 					</tbody>
 				</table>
-				<a href="index.html" class="button primary fit">回到首頁</a>
+				<a href="https://yyeh26.github.io/SLP_Demo.github.io/index.html" class="button primary fit">回到首頁</a>
 			</div>
 		</div>
 
@@ -116,20 +116,20 @@
 		var content;
 		$.getJSON("https://yyeh26.github.io/SLP_Demo.github.io/content.json")
 			.done(function (data) {
-				console.log(context_id);
-				var context_id = eval(location.href.substring(location.href.indexOf("?") + 1));
+
+				var context_id = parseInt(eval(location.href.substring(location.href.indexOf("?") + 1)));
 
 				content = data;
-				console.log(data);
-				var randomIndex = Math.floor(Math.random() * content[context_id]["urls"].length);
-				var randomSelectedUrl = content[context_id]["urls"][randomIndex];
-				var randomSelectedCaptions = content[context_id]['captions'][randomIndex];
-				console.log("d:");
-				console.log(d);
+				console.log(context_id);
+				console.log(content[context_id]);
+				console.log(content[context_id]['url'].length);
+				var randomIndex = Math.floor(Math.random() * content[context_id]['url'].length);
+				var randomSelectedUrl = content[context_id]['url'][randomIndex];
+				var randomSelectedCaptions = content[context_id]['content'][randomIndex];
 				console.log("randomSelectedCaptions:")
 				console.log(randomSelectedCaptions);
 				$("#VideoSelector").html(
-					"<iframe class='random-iframe' src='" + d + "' width='480px' height='300px' frameborder='0' scrolling='yes' seamless='seamless'></iframe>");
+					"<iframe class='random-iframe' src='" + randomSelectedUrl + "' width='480px' height='300px' frameborder='0' scrolling='yes' seamless='seamless'></iframe>");
 				$("#CaptionSelector").html("<fieldset class='dummy' lang='zh-tw'>" + randomSelectedCaptions + "</fieldset>");
 			});
 
