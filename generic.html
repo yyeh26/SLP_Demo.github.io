@@ -99,10 +99,10 @@
 				var randomIndex = Math.floor(Math.random() * content[context_id]['url'].length);
 				var randomSelectedUrl = content[context_id]['url'][randomIndex];
 				var randomSelectedCaptions = content[context_id]['content'][randomIndex];
-				console.log("randomSelectedCaptions:")
-				console.log(randomSelectedCaptions);
+				iframe_width = document.body.scrollWidth * 0.8
+				iframe_height = iframe_width * (9 / 16)
 				$("#VideoSelector").html(
-					"<iframe class='random-iframe' src='" + randomSelectedUrl + "' width='480px' height='300px' frameborder='0' scrolling='yes' seamless='seamless'></iframe>");
+					"<iframe class='random-iframe' src='" + randomSelectedUrl + "' width='" + iframe_width + "' height='" + iframe_height + "' frameborder='0' scrolling='yes' seamless='seamless'></iframe>");
 				$("#CaptionSelector").html("<fieldset class='dummy' lang='zh-tw'>" + randomSelectedCaptions + "</fieldset>");
 			});
 
